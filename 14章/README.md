@@ -280,27 +280,27 @@ Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs)
 ```
 在+和+=运算符中，都使用了临时变量`Sales_data`，但是这没有必要。
 
-##Exercise 14.22
+## Exercise 14.22
 > 定义赋值运算符的另一个版本，使得我们能把一个表示ISBN的	`string`赋给一个`Sales_data`对象。
 
 `Sales_data`: [cpp](ex14_20_sales_data.cpp) | [hpp](ex14_20_sales_data.h)
 
-##Exercise 14.23
+## Exercise 14.23
 > 为你的`StrVec`类定义一个`initializer_list`赋值运算符。
 
 `StrVec`: [cpp](ex14_23_StrVec.cpp) | [hpp](ex14_23_StrVec.h) | [test](ex14_23_StrVecTest.cpp)
 
-##Exercise 14.24
+## Exercise 14.24
 > 你在7.5.1节的练习7.40（第261页）中曾经选择并编写了一个类，你认为它应该含有拷贝赋值和移动赋值运算符吗？如果是，请实现它们。
 
 `Date`: [cpp](ex14_24_Date.cpp)
 
-##Exercise 14.25
+## Exercise 14.25
 > 上题的这个类还需要定义其他赋值运算符吗？如果是，请实现它们；同时说明运算对象应该是什么类型并解释原因。
 
 see [Exercise 14.24](#exercise-1424)
 
-##Exercise 14.26
+## Exercise 14.26
 > 为你的`StrBlob`类、`StrBlob`类、`StrVec`类和`String`类定义下标运算符。
 
 `StrBlob`/`StrBlobPtr`: [cpp](ex14_16_StrBlob.cpp) | [hpp](ex14_16_StrBlob.h) | [test](ex14_16_StrBlobTest.cpp)
@@ -308,7 +308,7 @@ see [Exercise 14.24](#exercise-1424)
 `String`: [cpp](ex14_26_String.cpp) | [hpp](ex14_26_String.h) | [test](ex14_26_StringMain.cpp)
 注：在`StrVec`和`String`中重构[]运算符不需要检验，如果超出范围会抛出异常。
 
-##Exercise 14.27
+## Exercise 14.27
 > 为你的`StrBlobPtr`类添加递增和递减运算符。
 
 [cpp](ex14_27_28_StrBlob.cpp) | [hpp](ex14_27_28_StrBlob.h) | [test](ex14_27_28_StrBlobTest.cpp)
