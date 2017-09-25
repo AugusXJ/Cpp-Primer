@@ -1,7 +1,6 @@
 # C++ primer 练习 - 14章：重载运算和类型转换
 ---------------------------------
 
-# 14.1 基本概念
 
 ## Exercise 14.1
 >在什么情况下重载的运算符与内置运算符有区别？在什么情况下重载的运算符又与内置运算符一样？
@@ -243,7 +242,7 @@ see [cpp](ex14_15_Date.cpp)
 ## Exercise 14.18
 > 为你的`StrBlob`类（参见121.1节，第405页）、`StrBlobPtr`类（参见12.1.6节）、StrVec类（参见13.5节，第405页）和`String`类（参见13.5节，第470页）定义关系运算符。
 
-`StrBlob&&StrBlobPtr`:[hpp](ex14_16_StrBlob.cpp) | [cpp](ex14_16_StrBlob.h) | [test](ex14_16_StrBlobTest.cpp)
+`StrBlob&&StrBlobPtr`:[hpp](ex14_16_StrBlob.h) | [cpp](ex14_16_StrBlob.cpp) | [test](ex14_16_StrBlobTest.cpp)
 
 `StrVec`:[hpp](ex14_16_StrVec.h) | [cpp](ex14_16_StrVec.cpp) | [test](ex14_16_StrVecTest.cpp)
 
@@ -254,24 +253,73 @@ see [cpp](ex14_15_Date.cpp)
 
 是。see [Exercise 14.15](ex14_15_Date.cpp)
 
+## Exercise 14.20
+> 为你的`Sales_data`类定义加法和复合赋值运算符。
+
+`Sales_data`: [cpp](ex14_20_sales_data.cpp) | [hpp](ex14_20_sales_data.h)
 
 
+## Exercise 14.21
+> 编写`Sales_data`类的+和+=运算符，使得+执行实际的加法操作而+=调用+。相比于14.3节（第497页）和14.4节（第500页）对这两个运算符的定义，本题的定义有何缺点？试讨论之。
 
+```cpp
+Sales_data& Sales_data::operator+=(const Sales_data &rhs)
+{
+    Sales_data old_data = *this;
+    *this = old_data + rhs;
+    return *this;
+}
 
-# 14.2 输入和输出运算符
+Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs)
+{
+    Sales_data sum;
+    sum.units_sold = lhs.units_sold + rhs.units_sold;
+    sum.revenue = lhs.revenue + rhs.revenue;
+    return sum;
+}
+```
+在+和+=运算符中，都使用了临时变量`Sales_data`，但是这没有必要。
 
-# 14.3 算数和关系运算符
+##Exercise 14.22
+> 定义赋值运算符的另一个版本，使得我们能把一个表示ISBN的	`string`赋给一个`Sales_data`对象。
 
-# 14.4 赋值运算符
+`Sales_data`: [cpp](ex14_20_sales_data.cpp) | [hpp](ex14_20_sales_data.h)
 
-# 14.5 下标运算符
+##Exercise 14.23
+> 为你的`StrVec`类定义一个`initializer_list`赋值运算符。
 
-# 14.6 递增和递减运算符
+`StrVec`: [cpp](ex14_23_StrVec.cpp) | [hpp](ex14_23_StrVec.h) | [test](ex14_23_StrVecTest.cpp)
 
-# 14.7 成员访问运算符
+##Exercise 14.24
+> 你在7.5.1节的练习7.40（第261页）中曾经选择并编写了一个类，你认为它应该含有拷贝赋值和移动赋值运算符吗？如果是，请实现它们。
 
-# 14.8 重载调用运算符
+`Date`: [cpp](ex14_24_Date.cpp)
 
-# 14.9 重载、类型转换与运算符
+##Exercise 14.25
+> 上题的这个类还需要定义其他赋值运算符吗？如果是，请实现它们；同时说明运算对象应该是什么类型并解释原因。
 
+see [Exercise 14.24](#exercise-1424)
+
+##Exercise 14.26
+> 为你的`StrBlob`类、`StrBlob`类、`StrVec`类和`String`类定义下标运算符。
+
+`StrBlob`/`StrBlobPtr`: [cpp](ex14_16_StrBlob.cpp) | [hpp](ex14_16_StrBlob.h) | [test](ex14_16_StrBlobTest.cpp)
+`StrVec`: [cpp](ex14_23_StrVec.cpp) | [hpp](ex14_23_StrVec.h) | [test](ex14_23_StrVecTest.cpp)
+`String`: [cpp](ex14_26_String.cpp) | [hpp](ex14_26_String.h) | [test](ex14_26_StringMain.cpp)
+注：在`StrVec`和`String`中重构[]运算符不需要检验，如果超出范围会抛出异常。
+
+##Exercise 14.27
+> 为你的`StrBlobPtr`类添加递增和递减运算符。
+
+[cpp](ex14_27_28_StrBlob.cpp) | [hpp](ex14_27_28_StrBlob.h) | [test](ex14_27_28_StrBlobTest.cpp)
+
+## Exercise 14.28
+> 为你的`StrBlobPtr`类添加加法和减法运算符，使其可以实现指针的算数运算（参见3.5.3，第106页）。
+
+see [Exercise 14.27](#exercise-1427)
+
+## Exercise 14.29
+> 为什么不定义const版本的递增和递减运算符？
+
+因为`++`和`--`改变了对象的属性。
 # 小结

@@ -19,6 +19,16 @@ public:
 		day = d.day;
 		return *this;
 	}
+	Date &operator=(const Date &&d)
+	{
+		if (*this != d)
+		{
+			year = d.year;
+			month = d.month;
+			day = d.day;
+			return *this;
+		}
+	}
 	Date &operator+=(const Date &d)
 	{
 		day += d.day;

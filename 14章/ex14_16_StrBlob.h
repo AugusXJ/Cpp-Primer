@@ -20,6 +20,10 @@ public:
 	StrBlob() : data(make_shared<vector<string>>()) {}
 	StrBlob(initializer_list<string> il);
 	StrBlob(string il);
+
+	string& operator[](size_t n);
+	const string& operator[](size_t n) const;
+
 	size_type size() const { return data->size(); }
 	bool empty() const { return data->empty(); }
 	//Ìí¼ÓºÍÉ¾³ýÔªËØ
@@ -34,6 +38,19 @@ private:
 	void check(size_type i, const string &msg) const;
 };
 
+
+inline string & StrBlob::operator[](size_t n)
+{
+	check(n, "out of range");
+	return data->at(n);
+}
+inline const string& StrBlob::operator[](size_t n) const
+{
+	check(n, "out of range");
+	return data->at(n);
+}
+
+
 class StrBlobPtr
 {
 public:
@@ -43,6 +60,8 @@ public:
 	friend bool operator<(const StrBlobPtr &s1, const StrBlobPtr &s2);
 	StrBlobPtr() : curr(0) {}
 	StrBlobPtr(StrBlob &a, size_t sz = 0) : wptr(a.data), curr(sz) {}
+	string& operator[](size_t n);
+	const string& operator[](size_t n) const;
 	string& deref() const
 	{
 		auto p = check(curr, "deference past end");
@@ -71,3 +90,15 @@ private:
 	weak_ptr<vector<string>> wptr;
 	size_t curr;
 };
+
+inline string & StrBlobPtr::operator[](size_t n)
+{
+	auto p = check(n, "out of range");
+	return (*p)[n];
+}
+
+inline const string & StrBlobPtr::operator[](size_t n) const
+{
+	auto p = check(n, "out of range");
+	return (*p)[n];
+}
