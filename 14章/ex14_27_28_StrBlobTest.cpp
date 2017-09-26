@@ -1,11 +1,13 @@
 #include "ex14_27_28_StrBlob.h"
 #include <iostream>
+#include <stdlib.h>
 
 int main()
 {
     StrBlob sb1{"a", "b", "c"};
     StrBlob sb2 = sb1;
 
+	std:: cout << sb1.size() << std::endl;
     sb2[2] = "b";
 
     if (sb1 > sb2) {
@@ -15,5 +17,7 @@ int main()
     }
 
     ConstStrBlobPtr iter(sb2);
-    std::cout << (iter + 2).deref() << std::endl;
+    std::cout << (iter + 1).deref() << std::endl;
+	system("pause");
+	return 0;
 }
