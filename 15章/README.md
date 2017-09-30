@@ -180,3 +180,41 @@ see [hpp](ex15_20_test.h)
 只需要将`int fun(int)`改为`int fun()`即可
 此时`bp2->fun()`调用的是的`D1::fcn`
 
+## Exercise 15.24
+> 哪种类需要虚析构函数？虚析构函数必须执行什么样的操作？
+
+基类需要虚析构函数，由于虚函数可以继承，所以派生类不需要定义虚析构函数。
+派生类进行动态分配时调用对应的析构函数。
+
+## Exercise 15.25
+> 我们为什么为`Disc_quote`定义一个默认构造函数？如果去除掉该构造函数的话会对`Bulk_quote`的行为产生什么样的影响？
+
+由于存在需要四个变量的`Bulk_quote`构造函数，所以默认构造函数被删除，若不显示定义一个默认构造函数，则在无变量创建`Bulk_quote`类时会报错。
+
+## Exercise 15.26
+> 定义`Quote`和`Bulk_quote`的拷贝控制成员，令其与合成的版本行为一致。为这些成员以及其他构造函数添加打印状态的语句，使得我们能够知道正在运算哪个程序。使用这些编写程序，预测程序将创建和销毁哪些对象。重复试验，不断比较你的预测和实际输出结果是否相同，直到预测完全准确再结束。
+
+`Quote&Bulk_quote`: [hpp](ex15_15_Quote.h) | [test](ex15_15_QuoteTest.cpp)
+
+
+## Exercise 15.27
+> 重新定义你的`Bulk_quote`类，令其继承构造函数。
+
+see [hpp](ex15_27_Quote.h)
+
+## Exercise 15.28
+> 定义一个存放`Quote`对象的`Vector`，将`Bulk_quote`对象传入其中。计算`Vector`中所有元素的总的`net_price`。
+
+see [hpp](ex15_28_Quote.h) | [cpp](ex15_28_QuoteTest.cpp)
+
+## Exercise 15.29
+> 再运行一次你的程序，这次传入`Quote`对象的`Shared_ptr`。如果这次计算出的总额与之前的程序不一致，解释为什么；如果一致，请说明原因。
+
+see [hpp](ex15_28_Quote.h) | [cpp](ex15_29_QuoteTest.cpp)
+结果与上一题不同，因为在28题中传入的`Bulk_quote`对象会被转化为`Quote`对象。
+如果我们想保存与继承有关的对象，我们应该定义`vector`来保存基类的指针（优选的智能指针）。 因此，`vector`包含对象的动态类型。
+
+## Exercise 15.30
+> 编写你自己的`Basket`类，用它计算上一个练习中交易记录的总价格。
+
+see [hpp](ex15_30_Quote.h) | [cpp](ex15_30_Quote.cpp) | [test](ex15_30_QuoteTest.cpp)

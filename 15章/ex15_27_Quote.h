@@ -1,4 +1,4 @@
-#pragma once
+pragma once
 #include <string>
 #include<iostream>
 
@@ -69,8 +69,7 @@ class Bulk_quote :public Disc_quote
 {
 public:
 	Bulk_quote() = default;
-	Bulk_quote(const std::string &book, double sales_price, std::size_t qty, double disc):
-		Disc_quote(book,sales_price,qty,disc){}
+	using Disc_quote::Disc_quote;
 	Bulk_quote(const Bulk_quote &q):Disc_quote(q){ cout << "Bulk_quote 拷贝构造" << endl; }
 	Bulk_quote& operator=(const Bulk_quote &q);
 	//覆盖基类的函数
@@ -98,8 +97,7 @@ class Limit_Bulk_quote : public Disc_quote
 {
 public:
 	Limit_Bulk_quote() = default;
-	Limit_Bulk_quote(const std::string &book, double sales_price, std::size_t qty, double disc, std::size_t ln) :
-		Disc_quote(book, sales_price, qty, disc) {}
+	using Disc_quote::Disc_quote;
 	Limit_Bulk_quote(const Limit_Bulk_quote &q):Disc_quote(q){ cout << "Limit_Bulk_quote 拷贝构造" << endl; }
 	Limit_Bulk_quote& operator=(const Limit_Bulk_quote &rhs);
 	double net_price(std::size_t n) const override;
