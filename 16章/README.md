@@ -102,3 +102,41 @@ see [hpp](ex16_14_Screen.h) | [cpp](ex16_14_ScreenTest.cpp)
 > 为你的`Screen`模板实现输入和输出运算符，`Screen`类需要哪些友元（如果需要的话）来令输入和输出运算符正确工作？解释每个友元声明（如果有的话）为什么是必要的。
 
 和`Blob`是一样的。
+
+## Exercise 16.16
+> 将`StrVec`类重写为模板（参见13.5节，第465页），命名为`Vec`。
+
+see [hpp](ex16_16_Vec.h) | [test](ex16_16_VecTest.cpp)
+
+## Exercise 16.17
+> 声明为`typename`的类型参数和声明为`class`的类型参数有什么不同（如果有的话）？什么时候必须使用`typename`？
+
+当我们想通知编译器一个名称代表一个类型时，我们必须使用关键字typename，而不是类。
+看到一个比较好的说明[http://blog.csdn.net/dick_china/article/details/4522253](http://blog.csdn.net/dick_china/article/details/4522253)
+
+## Exercise 16.18
+> 解释下面每个函数模板声明并指出它们是否非法。更正你发现的每个错误。
+```cpp
+(a) template <typename T, U, typename V> void f1(T, U, V);
+(b) template <typename T> T f2(int &T);
+(c) inline template <typename T> T foo(T, unsigned int*);
+(d) template <typename T> f4(T, T);
+(e) typedef char Ctype;
+template <typename Ctype> Ctype f5(Ctype a);
+```
+
+更正
+```cpp
+(a) template <typename T, typename U, typename V> void f1(T, U, V);
+(b) template <typename T> T f2(int &);
+```
+
+## Exercise 16.19
+> 编写函数，接受一个容器的引用，打印容器中的元素。使用容器的`size_type`和`size`成员来控制打印元素的循环。
+
+see [cpp](ex16_19_vector.cpp)
+
+## Exercise 16.20
+> 重写上一题的函数，使用`begin`和`end`返回的迭代器控制循环。
+
+see [cpp](ex16_20_vector.cpp)
